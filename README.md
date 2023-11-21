@@ -113,7 +113,7 @@ Resolving deltas: 100% (2/2), done.
 Note: This example assumes a valid token file exists on the local workstation in `~/.puppetlabs/token`
 
 ```
-[user@workstation custom_report_tasks]$ bolt task run custom_report_tasks::unresponsive_nodes -t localhost token=$(cat ~/.puppetlabs/token)
+[user@workstation custom_report_tasks]$ bolt task run custom_report_tasks::unresponsive_nodes -t localhost token=$(cat ~/.puppetlabs/token) puppetdb_url="https://pe.paulreed.ca:8081"
 
 Started on localhost...
 Finished on localhost:
@@ -263,3 +263,11 @@ Once the module is installed, the task should be available to run or schedule fr
 For additional information on using Tasks with Puppet Enterprise, see [Tasks in PE](https://www.puppet.com/docs/pe/2023.5/tasks_in_pe.html)
 
 ![pe_task_example](docs/images/pe_task_example.png)
+
+Note: At minimum, the `token` and `puppetdb_url` parameters will likely need to be set.
+
+![pe_task_example_parameters](docs/images/pe_task_example_parameters.png)
+
+Select only a single node from which to run the report. Any endpoint that has a Puppet Agent installed should be able to run the report. This can be your primary Puppet Server or any other node, as long as a `token_location` file exists on that node or `token` is provided as a parameter. You may also need to specify the `puppetdb_url`.
+
+![pe_task_example2](docs/images/pe_task_example2.png)
