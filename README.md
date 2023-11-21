@@ -82,7 +82,7 @@ Documentation for creating a access token can be found in the Puppet Enterprise 
 
 Note: It is advised to use a longer `lifetime` than the default for the acess token to prevent expiry, especially when automating as a scheduled task.
 
-### Examples:
+### Puppet Bolt Examples:
 
 #### Installation for use with Bolt:
 
@@ -243,3 +243,23 @@ Finished on localhost:
     },
  ...
 ```
+
+### Puppet Enterprise Examples:
+
+#### Module Installation:
+
+To make the task available in your Puppet Enterprise Orchestrator, add the following lines to your `Puppetfile` inside your control repository.
+
+```
+## Custom Report Tasks
+mod 'psreed-custom_report_tasks',
+  :git    => 'https://github.com/psreed/custom_report_tasks.git',
+  :branch => 'main'
+```
+
+#### Task usage from Puppet Enterprsie
+
+Once the module is installed, the task should be available to run or schedule from the Console UI. To see the additional parameters for the task, use the `View task metadata` link to expose the view. 
+For additional information on using Tasks with Puppet Enterprise, see [Tasks in PE](https://www.puppet.com/docs/pe/2023.5/tasks_in_pe.html)
+
+![pe_task_example](docs/images/pe_task_example.png)
