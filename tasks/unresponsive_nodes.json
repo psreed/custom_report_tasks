@@ -1,0 +1,42 @@
+{
+    "puppet_task_version": 1,
+    "supports_noop": false,
+    "description": "Custom Report Tasks - Report on unresponsive nodes.",
+    "parameters": {
+        "token": {
+            "description": "Token used for PuppetDB API authorizated access. If defined as 'local' (default), an attempt will be made to use the content of an existing token located 'token_location', otherwise this parameter is expected to contain the token content itself.",
+            "type": "String[1]",
+            "default": "local"
+        },
+        "token_location": {
+            "description": "Provide an alternate location for the token file, if using a local file containing the access token.",
+            "type": "String[1]",
+            "default": "/root/.puppetlabs/token"
+        },
+        "local_file": {
+            "description": "Local file in which to save the report. This file will reside on the target node this task is run against. The file will be overwritten on each run of this task without warning.",
+            "type": "String[1]",
+            "default": "/tmp/unresponsive_nodes.json"
+        },
+        "email_address": {
+            "description": "Email address to send the report to. Note: assumes a Linux system is used to run this task and requires \"sendmail\" to be previously configured.",
+            "type": "Optional[String[1]]"
+        },
+        "puppetdb_uri": {
+            "description": "PuppetDB server URI for Reports API endpoint access.",
+            "type": "String[1]",
+            "default": "https://localhost:8081"
+        },
+        "return_fields": {
+            "description": "Fields to return from reports endpoint for each node in the report.",
+            "type": "String[1]",
+            "default": "certname,receive_time,corrective_change,status"
+        },
+        "debug": {
+            "description": "Show debugging information. WARNING: This will expose your authoriation token visibily!",
+            "type": "Boolean",
+            "default": false
+        }
+    },
+    "input_method": "stdin"
+}
